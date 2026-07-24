@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="description" content="イラスト・音声・冒険で英単語を覚えるオフライン学習ゲーム" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
   <title>LumiVocab Adventure</title>
 </head>
@@ -16,7 +16,7 @@
   <div id="app" class="app-shell">
     <header class="topbar">
       <div class="brand" aria-label="LumiVocab Adventure">
-        <img src="assets/icon.svg" alt="" class="brand-icon" />
+        <img src="icon.svg" alt="" class="brand-icon" />
         <div><strong>LumiVocab</strong><span>Adventure</span></div>
       </div>
       <div class="status-pills" aria-label="学習ステータス">
@@ -36,7 +36,7 @@
           </div>
           <div class="mascot-stage" aria-hidden="true">
             <div class="sun"></div>
-            <img src="assets/mascot.svg" alt="" class="mascot" />
+            <img src="mascot.svg" alt="" class="mascot" />
             <div class="float-card card-a">A</div>
             <div class="float-card card-b">あ</div>
             <div class="float-card card-c">★</div>
@@ -89,7 +89,7 @@
           <button class="map-node unlocked" data-stage="3" style="--x:80%;--y:48%"><span>4</span><small>雲上図書館</small></button>
           <button class="map-node" data-stage="4" style="--x:55%;--y:29%"><span>5</span><small>雪あかり峠</small></button>
           <button class="map-node" data-stage="5" style="--x:24%;--y:20%"><span>6</span><small>星降る塔</small></button>
-          <img src="assets/mascot-map.svg" alt="ルミン" class="map-mascot" />
+          <img src="mascot-map.svg" alt="ルミン" class="map-mascot" />
           <div class="map-foreground"></div>
         </div>
         <p class="map-note">ステージ1〜4を体験できます。学習すると次の世界が開きます。</p>
@@ -102,9 +102,9 @@
         </div>
         <div class="battle-intro" id="battleIntro">
           <div class="battle-visual">
-            <div class="podium p2"><img src="assets/rival-blue.svg" alt="青のライバル" /><span>2</span></div>
-            <div class="podium p1"><img src="assets/mascot.svg" alt="ルミン" /><span>1</span></div>
-            <div class="podium p3"><img src="assets/rival-pink.svg" alt="桃のライバル" /><span>3</span></div>
+            <div class="podium p2"><img src="rival-blue.svg" alt="青のライバル" /><span>2</span></div>
+            <div class="podium p1"><img src="mascot.svg" alt="ルミン" /><span>1</span></div>
+            <div class="podium p3"><img src="rival-pink.svg" alt="桃のライバル" /><span>3</span></div>
           </div>
           <h2>意味を瞬時に思い出せ！</h2>
           <p>50秒で何問正解できるか、3人のライバルと競います。</p>
@@ -141,7 +141,7 @@
           <button class="secondary-btn" id="resetBtn">記録をリセット</button>
         </div>
         <div class="profile-hero">
-          <img src="assets/mascot.svg" alt="ルミン" />
+          <img src="mascot.svg" alt="ルミン" />
           <div><span class="soft-badge" id="rankBadge">ルーキー冒険者</span><h2 id="profileName">ことば冒険者</h2><p>小さな積み重ねが、大きな語彙力になる。</p></div>
         </div>
         <div class="dashboard-grid">
@@ -182,7 +182,7 @@
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="data/words.js"></script>
+  <script src="words.js"></script>
   <script src="app.js" defer></script>
 </body>
 </html>

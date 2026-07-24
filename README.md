@@ -18,7 +18,8 @@
 ## GitHub Pagesで公開
 
 1. ZIPを解凍します。
-2. 解凍後のフォルダ内にある `index.html`、`styles.css`、`app.js`、`data`、`assets`、`manifest.webmanifest`、`sw.js`、`README.md` を、そのままGitHubリポジトリ直下へアップロードします。
+2. 解凍後に表示されるファイルを、すべてGitHubリポジトリ直下へアップロードします。
+   - この版はiPhoneからのアップロードで階層が崩れないよう、すべてのファイルを同じ階層に配置しています。
 3. リポジトリ名は `lumi-vocab-adventure` を推奨します。
 4. GitHubの Settings → Pages → Deploy from a branch → `main` / `(root)` を選びます。
 
