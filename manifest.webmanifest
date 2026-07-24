@@ -1,0 +1,9 @@
+{
+  "name":"LumiVocab Adventure",
+  "short_name":"LumiVocab",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f6f7ff",
+  "theme_color":"#6f7df6",
+  "icons":[{"src":"assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
