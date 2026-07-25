@@ -1,9 +1,10 @@
 {
-  "name":"LumiVocab Adventure",
-  "short_name":"LumiVocab",
-  "start_url":"./",
-  "display":"standalone",
-  "background_color":"#f6f7ff",
-  "theme_color":"#6f7df6",
-  "icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+  "name": "LumiVocab Adventure｜英検級別",
+  "short_name": "LumiVocab",
+  "description": "英検3級から1級までをイラスト・音声・復習で学ぶ単語ゲーム",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f7ff",
+  "theme_color": "#6f7df6",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }

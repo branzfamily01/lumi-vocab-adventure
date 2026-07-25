@@ -6,22 +6,22 @@
   <meta name="theme-color" content="#6f7df6" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="description" content="イラスト・音声・冒険で英単語を覚えるオフライン学習ゲーム" />
+  <meta name="description" content="級別・イラスト・音声・冒険で英検単語を覚えるオフライン学習ゲーム" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
-  <title>LumiVocab Adventure</title>
+  <title>LumiVocab Adventure｜英検級別</title>
 </head>
 <body>
   <div id="app" class="app-shell">
     <header class="topbar">
       <div class="brand" aria-label="LumiVocab Adventure">
         <img src="icon.svg" alt="" class="brand-icon" />
-        <div><strong>LumiVocab</strong><span>Adventure</span></div>
+        <div><strong>LumiVocab</strong><span>英検 Adventure</span></div>
       </div>
       <div class="status-pills" aria-label="学習ステータス">
-        <button class="pill" id="streakPill" title="連続学習日数">🔥 <span id="streakCount">0</span></button>
-        <button class="pill" id="leafPill" title="集めたルミリーフ">🍃 <span id="leafCount">0</span></button>
+        <button class="pill" title="連続学習日数">🔥 <span id="streakCount">0</span></button>
+        <button class="pill" title="集めたルミリーフ">🍃 <span id="leafCount">0</span></button>
       </div>
     </header>
 
@@ -29,160 +29,111 @@
       <section id="homeView" class="view active" aria-labelledby="homeTitle">
         <div class="hero-card">
           <div class="hero-copy">
-            <p class="eyebrow">TODAY'S ADVENTURE</p>
-            <h1 id="homeTitle">ことばの森を<br />光で満たそう！</h1>
-            <p>イラスト・音声・例文をつなげて、英単語を「使える記憶」に。</p>
-            <button class="primary-btn" id="startQuestBtn">今日のクエストを始める</button>
+            <p class="eyebrow">EIKEN VOCAB ADVENTURE</p>
+            <span id="heroCourseBadge" class="course-badge">英検3級</span>
+            <h1 id="homeTitle">級を選んで、<br />ことばの冒険へ。</h1>
+            <p id="heroCourseText">イラスト・音声・例文をつなげて、英単語を「使える記憶」に。</p>
+            <button class="primary-btn" id="startQuestBtn">この級で10問スタート</button>
           </div>
           <div class="mascot-stage" aria-hidden="true">
-            <div class="sun"></div>
-            <img src="mascot.svg" alt="" class="mascot" />
-            <div class="float-card card-a">A</div>
-            <div class="float-card card-b">あ</div>
-            <div class="float-card card-c">★</div>
+            <div class="sun"></div><img src="mascot.svg" alt="" class="mascot" />
+            <div class="float-card card-a">A</div><div class="float-card card-b">あ</div><div class="float-card card-c">★</div>
           </div>
         </div>
+
+        <div class="section-title-row course-heading" id="courseSection">
+          <div><p class="eyebrow">COURSE SELECT</p><h2>英検級別コース</h2></div>
+          <span id="selectedWordCount" class="soft-badge">900語</span>
+        </div>
+        <div class="audience-switch" role="tablist" aria-label="対象を選択">
+          <button class="audience-btn active" data-audience="kids">🧒 子ども用</button>
+          <button class="audience-btn" data-audience="adult">🧑 大人用</button>
+        </div>
+        <div id="levelCards" class="level-grid"></div>
 
         <div class="section-title-row">
           <div><p class="eyebrow">DAILY MISSION</p><h2>今日のミッション</h2></div>
           <span id="missionSummary" class="soft-badge">0 / 10問</span>
         </div>
         <div class="mission-grid">
-          <article class="mission-card">
-            <div class="mission-icon">⚡</div>
-            <div><strong>10問チャレンジ</strong><p>短時間でテンポよく</p></div>
-            <div class="progress"><span id="questionProgress"></span></div>
-          </article>
-          <article class="mission-card">
-            <div class="mission-icon">🎧</div>
-            <div><strong>音声を5回聞く</strong><p>音と意味を結びつける</p></div>
-            <div class="progress"><span id="audioProgress"></span></div>
-          </article>
-          <article class="mission-card">
-            <div class="mission-icon">🧠</div>
-            <div><strong>復習を3語</strong><p>忘れる前にもう一度</p></div>
-            <div class="progress"><span id="reviewProgress"></span></div>
-          </article>
+          <article class="mission-card"><div class="mission-icon">⚡</div><div><strong>10問チャレンジ</strong><p>選択中の級でテンポよく</p></div><div class="progress"><span id="questionProgress"></span></div></article>
+          <article class="mission-card"><div class="mission-icon">🎧</div><div><strong>音声を5回聞く</strong><p>音と意味を結びつける</p></div><div class="progress"><span id="audioProgress"></span></div></article>
+          <article class="mission-card"><div class="mission-icon">🧠</div><div><strong>復習を3語</strong><p>忘れる前にもう一度</p></div><div class="progress"><span id="reviewProgress"></span></div></article>
         </div>
 
-        <div class="section-title-row">
-          <div><p class="eyebrow">YOUR GROWTH</p><h2>今日の成長</h2></div>
-        </div>
+        <div class="section-title-row"><div><p class="eyebrow">YOUR GROWTH</p><h2>今日の成長</h2></div></div>
         <div class="stat-grid">
           <article class="stat-card"><span>正解数</span><strong id="todayCorrect">0</strong><small>words</small></article>
           <article class="stat-card"><span>正答率</span><strong id="todayAccuracy">—</strong><small>accuracy</small></article>
-          <article class="stat-card"><span>習得語</span><strong id="masteredCount">0</strong><small>mastered</small></article>
+          <article class="stat-card"><span>選択級の習得語</span><strong id="masteredCount">0</strong><small>mastered</small></article>
         </div>
       </section>
 
       <section id="mapView" class="view" aria-labelledby="mapTitle">
         <div class="page-heading">
-          <div><p class="eyebrow">ADVENTURE MAP</p><h1 id="mapTitle">ことばの世界を冒険</h1></div>
+          <div><p class="eyebrow">ADVENTURE MAP</p><h1 id="mapTitle">ことばの世界を冒険</h1><span id="mapCourseBadge" class="course-badge small">英検3級</span></div>
           <button class="secondary-btn" id="reviewQuestBtn">復習クエスト</button>
         </div>
         <div class="map-wrap">
-          <div class="map-sky"><span class="cloud cloud-1"></span><span class="cloud cloud-2"></span></div>
-          <div class="route-line"></div>
-          <button class="map-node unlocked" data-stage="0" style="--x:14%;--y:79%"><span>1</span><small>はじまり草原</small></button>
-          <button class="map-node unlocked" data-stage="1" style="--x:35%;--y:62%"><span>2</span><small>しずくの森</small></button>
-          <button class="map-node unlocked" data-stage="2" style="--x:63%;--y:69%"><span>3</span><small>サンセット砂丘</small></button>
-          <button class="map-node unlocked" data-stage="3" style="--x:80%;--y:48%"><span>4</span><small>雲上図書館</small></button>
-          <button class="map-node" data-stage="4" style="--x:55%;--y:29%"><span>5</span><small>雪あかり峠</small></button>
-          <button class="map-node" data-stage="5" style="--x:24%;--y:20%"><span>6</span><small>星降る塔</small></button>
-          <img src="mascot-map.svg" alt="ルミン" class="map-mascot" />
-          <div class="map-foreground"></div>
+          <div class="map-sky"><span class="cloud cloud-1"></span><span class="cloud cloud-2"></span></div><div class="route-line"></div>
+          <button class="map-node unlocked" data-stage="0" style="--x:14%;--y:79%"><span>1</span><small>基本語の草原</small></button>
+          <button class="map-node unlocked" data-stage="1" style="--x:35%;--y:62%"><span>2</span><small>意味の森</small></button>
+          <button class="map-node unlocked" data-stage="2" style="--x:63%;--y:69%"><span>3</span><small>音声の砂丘</small></button>
+          <button class="map-node unlocked" data-stage="3" style="--x:80%;--y:48%"><span>4</span><small>例文図書館</small></button>
+          <button class="map-node unlocked" data-stage="4" style="--x:55%;--y:29%"><span>5</span><small>復習の峠</small></button>
+          <button class="map-node unlocked" data-stage="5" style="--x:24%;--y:20%"><span>6</span><small>定着の塔</small></button>
+          <img src="mascot-map.svg" alt="ルミン" class="map-mascot" /><div class="map-foreground"></div>
         </div>
-        <p class="map-note">ステージ1〜4を体験できます。学習すると次の世界が開きます。</p>
+        <p class="map-note">選択した級の単語を6ステージに分けて学習します。</p>
       </section>
 
       <section id="battleView" class="view" aria-labelledby="battleTitle">
-        <div class="page-heading">
-          <div><p class="eyebrow">SPEED BATTLE</p><h1 id="battleTitle">50秒ことばバトル</h1></div>
-          <span class="soft-badge">疑似オンライン対戦</span>
-        </div>
+        <div class="page-heading"><div><p class="eyebrow">SPEED BATTLE</p><h1 id="battleTitle">50秒ことばバトル</h1><span id="battleCourseBadge" class="course-badge small">英検3級</span></div><span class="soft-badge">疑似オンライン対戦</span></div>
         <div class="battle-intro" id="battleIntro">
-          <div class="battle-visual">
-            <div class="podium p2"><img src="rival-blue.svg" alt="青のライバル" /><span>2</span></div>
-            <div class="podium p1"><img src="mascot.svg" alt="ルミン" /><span>1</span></div>
-            <div class="podium p3"><img src="rival-pink.svg" alt="桃のライバル" /><span>3</span></div>
-          </div>
-          <h2>意味を瞬時に思い出せ！</h2>
-          <p>50秒で何問正解できるか、3人のライバルと競います。</p>
-          <button class="primary-btn" id="startBattleBtn">マッチング開始</button>
+          <div class="battle-visual"><div class="podium p2"><img src="rival-blue.svg" alt="青のライバル" /><span>2</span></div><div class="podium p1"><img src="mascot.svg" alt="ルミン" /><span>1</span></div><div class="podium p3"><img src="rival-pink.svg" alt="桃のライバル" /><span>3</span></div></div>
+          <h2>意味を瞬時に思い出せ！</h2><p>選択中の級から出題。50秒で正解数を競います。</p><button class="primary-btn" id="startBattleBtn">マッチング開始</button>
         </div>
-        <div id="battleArena" class="battle-arena hidden">
-          <div class="battle-hud">
-            <div class="timer-ring"><strong id="battleTimer">50</strong><span>sec</span></div>
-            <div class="rank-list" id="rankList"></div>
-          </div>
-          <div id="battleQuestion"></div>
-        </div>
+        <div id="battleArena" class="battle-arena hidden"><div class="battle-hud"><div class="timer-ring"><strong id="battleTimer">50</strong><span>sec</span></div><div class="rank-list" id="rankList"></div></div><div id="battleQuestion"></div></div>
       </section>
 
       <section id="bookView" class="view" aria-labelledby="bookTitle">
-        <div class="page-heading">
-          <div><p class="eyebrow">SMART WORD BOOK</p><h1 id="bookTitle">わたしの単語帳</h1></div>
-          <button class="secondary-btn" id="autoPlayBtn">▶ 音声連続再生</button>
-        </div>
-        <div class="filter-tabs" role="tablist">
-          <button class="filter-tab active" data-filter="all">すべて</button>
-          <button class="filter-tab" data-filter="weak">苦手</button>
-          <button class="filter-tab" data-filter="fuzzy">うろ覚え</button>
-          <button class="filter-tab" data-filter="due">復習待ち</button>
-          <button class="filter-tab" data-filter="mastered">習得</button>
+        <div class="page-heading"><div><p class="eyebrow">SMART WORD BOOK</p><h1 id="bookTitle">級別単語帳</h1></div><button class="secondary-btn" id="autoPlayBtn">▶ 音声連続再生</button></div>
+        <div id="bookLevelTabs" class="level-tabs" role="tablist" aria-label="英検級を選択"></div>
+        <div class="filter-tabs" role="tablist" aria-label="記憶状態で絞り込み">
+          <button class="filter-tab active" data-filter="all">すべて</button><button class="filter-tab" data-filter="weak">苦手</button><button class="filter-tab" data-filter="fuzzy">うろ覚え</button><button class="filter-tab" data-filter="due">復習待ち</button><button class="filter-tab" data-filter="mastered">習得</button>
         </div>
         <label class="search-box"><span>⌕</span><input id="wordSearch" type="search" placeholder="英語・日本語で検索" /></label>
-        <div id="wordList" class="word-list"></div>
+        <div class="word-list-meta"><strong id="wordListCount">0語</strong><span>スクロール負荷を抑えて順次表示</span></div>
+        <div id="wordList" class="word-list"></div><button id="loadMoreWords" class="secondary-btn load-more hidden">さらに表示</button>
       </section>
 
       <section id="profileView" class="view" aria-labelledby="profileTitle">
-        <div class="page-heading">
-          <div><p class="eyebrow">MY PAGE</p><h1 id="profileTitle">学びの記録</h1></div>
-          <button class="secondary-btn" id="resetBtn">記録をリセット</button>
-        </div>
-        <div class="profile-hero">
-          <img src="mascot.svg" alt="ルミン" />
-          <div><span class="soft-badge" id="rankBadge">ルーキー冒険者</span><h2 id="profileName">ことば冒険者</h2><p>小さな積み重ねが、大きな語彙力になる。</p></div>
-        </div>
+        <div class="page-heading"><div><p class="eyebrow">MY PAGE</p><h1 id="profileTitle">学びの記録</h1></div><button class="secondary-btn" id="resetBtn">記録をリセット</button></div>
+        <div class="profile-hero"><img src="mascot.svg" alt="ルミン" /><div><span class="soft-badge" id="rankBadge">ルーキー冒険者</span><h2 id="profileName">ことば冒険者</h2><p>級ごとの進み具合をまとめて確認できます。</p></div></div>
         <div class="dashboard-grid">
           <article class="dashboard-card"><h3>総合レベル</h3><div class="big-score" id="levelScore">1</div><div class="progress large"><span id="levelProgress"></span></div><p id="xpLabel">0 / 100 XP</p></article>
-          <article class="dashboard-card"><h3>記憶ステータス</h3><div class="donut" id="memoryDonut"><span id="memoryPercent">0%</span></div><p>学習済み単語の定着率</p></article>
+          <article class="dashboard-card"><h3>選択級の定着率</h3><div class="donut" id="memoryDonut"><span id="memoryPercent">0%</span></div><p id="memoryCaption">学習済み単語の定着率</p></article>
+          <article class="dashboard-card span-2"><h3>級別進捗</h3><div id="levelProgressList" class="level-progress-list"></div></article>
           <article class="dashboard-card span-2"><h3>7日間の学習</h3><div class="bar-chart" id="weeklyChart"></div></article>
         </div>
-        <div class="data-tools">
-          <h2>単語データを拡張</h2>
-          <p>JSONファイルから単語を追加できます。現在のデータを書き出して編集し、再読み込みも可能です。</p>
-          <div class="button-row">
-            <button class="secondary-btn" id="exportBtn">JSONを書き出す</button>
-            <label class="secondary-btn file-btn">JSONを読み込む<input id="importInput" type="file" accept="application/json" /></label>
-          </div>
-        </div>
+        <div class="data-tools"><h2>単語データを拡張</h2><p>選択中の級をJSONで書き出せます。読み込んだ単語は現在の級に追加されます。</p><div class="button-row"><button class="secondary-btn" id="exportBtn">選択級JSONを書き出す</button><label class="secondary-btn file-btn">JSONを読み込む<input id="importInput" type="file" accept="application/json" /></label></div></div>
       </section>
     </main>
 
     <nav class="bottom-nav" aria-label="メインメニュー">
-      <button class="nav-btn active" data-view="home"><span>⌂</span><small>ホーム</small></button>
-      <button class="nav-btn" data-view="map"><span>◉</span><small>冒険</small></button>
-      <button class="nav-btn battle-nav" data-view="battle"><span>⚔</span><small>対戦</small></button>
-      <button class="nav-btn" data-view="book"><span>▤</span><small>単語帳</small></button>
-      <button class="nav-btn" data-view="profile"><span>♙</span><small>記録</small></button>
+      <button class="nav-btn active" data-view="home"><span>⌂</span><small>ホーム</small></button><button class="nav-btn" data-view="map"><span>◉</span><small>冒険</small></button><button class="nav-btn battle-nav" data-view="battle"><span>⚔</span><small>対戦</small></button><button class="nav-btn" data-view="book"><span>▤</span><small>単語帳</small></button><button class="nav-btn" data-view="profile"><span>♙</span><small>記録</small></button>
     </nav>
   </div>
 
-  <div id="quizOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="quizWord">
+  <div id="quizOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-label="単語クイズ">
     <div class="quiz-shell">
-      <div class="quiz-top">
-        <button class="icon-btn" id="closeQuizBtn" aria-label="閉じる">×</button>
-        <div class="quiz-progress"><span id="quizProgress"></span></div>
-        <div class="quiz-counter" id="quizCounter">1 / 10</div>
-      </div>
+      <div class="quiz-top"><button class="icon-btn" id="closeQuizBtn" aria-label="閉じる">×</button><div class="quiz-progress"><span id="quizProgress"></span></div><div class="quiz-counter" id="quizCounter">1 / 10</div></div>
       <div id="quizContent" class="quiz-content"></div>
       <div id="feedbackPanel" class="feedback-panel hidden"></div>
     </div>
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="words.js"></script>
-  <script src="app.js" defer></script>
+  <script src="word-packs.js"></script><script src="app.js" defer></script>
 </body>
 </html>
